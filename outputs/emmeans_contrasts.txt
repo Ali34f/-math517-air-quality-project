@@ -1,0 +1,22 @@
+band = Night (00-05):
+ contrast                    estimate   SE  df z.ratio p.value
+ Roadside - Urban Background     6.26 1.84 Inf   3.402  0.0007
+
+band = Morning peak (06-09):
+ contrast                    estimate   SE  df z.ratio p.value
+ Roadside - Urban Background     9.89 1.84 Inf   5.368 <0.0001
+
+band = Daytime (10-15):
+ contrast                    estimate   SE  df z.ratio p.value
+ Roadside - Urban Background    11.50 1.84 Inf   6.246 <0.0001
+
+band = Evening peak (16-19):
+ contrast                    estimate   SE  df z.ratio p.value
+ Roadside - Urban Background    12.36 1.84 Inf   6.712 <0.0001
+
+band = Late evening (20-23):
+ contrast                    estimate   SE  df z.ratio p.value
+ Roadside - Urban Background     9.78 1.84 Inf   5.310 <0.0001
+
+Results are averaged over the levels of: daytype, year 
+Degrees-of-freedom method: asymptotic 

@@ -1,0 +1,36 @@
+Linear mixed model fit by REML ['lmerMod']
+Formula: mean_no2 ~ site_type * (band + daytype) + factor(year) + (1 |      site_code)
+   Data: model_data
+
+REML criterion at convergence: 14282.3
+
+Scaled residuals: 
+    Min      1Q  Median      3Q     Max 
+-4.2289 -0.5987 -0.0658  0.5156  6.6437 
+
+Random effects:
+ Groups    Name        Variance Std.Dev.
+ site_code (Intercept) 38.73    6.223   
+ Residual              13.79    3.714   
+Number of obs: 2570, groups:  site_code, 53
+
+Fixed effects:
+                                                   Estimate Std. Error t value
+(Intercept)                                         36.0056     1.0912  32.995
+site_typeUrban Background                           -6.9015     1.8483  -3.734
+bandMorning peak (06-09)                             7.9292     0.2815  28.164
+bandDaytime (10-15)                                  4.3308     0.2815  15.383
+bandEvening peak (16-19)                             9.2157     0.2815  32.733
+bandLate evening (20-23)                             9.6156     0.2815  34.154
+daytypeWeekend                                      -5.7906     0.1781 -32.520
+factor(year)2020                                    -8.2797     0.2760 -29.995
+factor(year)2021                                    -7.8042     0.2709 -28.811
+factor(year)2022                                    -9.4690     0.2859 -33.119
+factor(year)2023                                   -11.3335     0.2872 -39.467
+factor(year)2024                                   -13.8019     0.2945 -46.865
+factor(year)2025                                   -13.9226     0.3002 -46.377
+site_typeUrban Background:bandMorning peak (06-09)  -3.6210     0.4954  -7.309
+site_typeUrban Background:bandDaytime (10-15)       -5.2378     0.4954 -10.573
+site_typeUrban Background:bandEvening peak (16-19)  -6.0957     0.4954 -12.304
+site_typeUrban Background:bandLate evening (20-23)  -3.5138     0.4954  -7.093
+site_typeUrban Background:daytypeWeekend             1.2733     0.3133   4.064
