@@ -1,0 +1,21 @@
+site_type,daytype,band,p_exceed,n_sites
+Roadside,Weekday,Night (00-05),0.15358669918712542,35
+Roadside,Weekday,Morning peak (06-09),0.3922766207464974,35
+Roadside,Weekday,Daytime (10-15),0.28056477128629304,35
+Roadside,Weekday,Evening peak (16-19),0.3792384064579,35
+Roadside,Weekday,Late evening (20-23),0.33708868346611054,35
+Roadside,Weekend,Night (00-05),0.15911434953588882,35
+Roadside,Weekend,Morning peak (06-09),0.17178060567910516,35
+Roadside,Weekend,Daytime (10-15),0.15946227697986942,35
+Roadside,Weekend,Evening peak (16-19),0.25214685849130963,35
+Roadside,Weekend,Late evening (20-23),0.2892102812164295,35
+Urban Background,Weekday,Night (00-05),0.09805108805179905,18
+Urban Background,Weekday,Morning peak (06-09),0.20359594341427203,18
+Urban Background,Weekday,Daytime (10-15),0.09708211916536486,18
+Urban Background,Weekday,Evening peak (16-19),0.16298834633827727,18
+Urban Background,Weekday,Late evening (20-23),0.18909772994422916,18
+Urban Background,Weekend,Night (00-05),0.09951513069523418,18
+Urban Background,Weekend,Morning peak (06-09),0.07925084902914845,18
+Urban Background,Weekend,Daytime (10-15),0.042255939886122,18
+Urban Background,Weekend,Evening peak (16-19),0.09593521905919342,18
+Urban Background,Weekend,Late evening (20-23),0.14349724709486658,18
