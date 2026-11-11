@@ -1,0 +1,12 @@
+
+	Welch Two Sample t-test
+
+data:  mean_no2 by site_type
+t = 5.571, df = 49.877, p-value = 1.015e-06
+alternative hypothesis: true difference in means between group Roadside and group Urban Background is not equal to 0
+95 percent confidence interval:
+  6.350113 13.511365
+sample estimates:
+        mean in group Roadside mean in group Urban Background 
+                      30.98563                       21.05490 
+

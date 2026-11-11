@@ -238,3 +238,33 @@ prob_hour <- no2_clean %>%
 
 print(prob_hour, n = 20)
 write_csv(prob_hour, "outputs/probability_exceed.csv")
+
+# Statistical test: do roadside sites have higher mean NO2 than urban background sites?
+# Unit of analysis = one mean per site, so correlated hours are not treated as independent
+site_means <- no2_clean %>%
+  group_by(site_code, site_type) %>%
+  summarise(mean_no2 = mean(value), .groups = "drop")
+
+t_res <- t.test(mean_no2 ~ site_type, data = site_means)
+print(t_res)
+capture.output(t_res, file = "outputs/t_test.txt")
+
+# Model: linear mixed model of site-level means
+# One row per site x year x time band x day type, so hours are not treated as independent
+model_data <- no2_clean %>%
+  group_by(site_code, site_type, year, band, daytype) %>%
+  summarise(mean_no2 = mean(value), .groups = "drop")
+
+# site_type interactions let the roadside excess differ by time band and day type
+# factor(year) adjusts for the downward trend; (1 | site_code) gives each site its own baseline
+model <- lmer(mean_no2 ~ site_type * (band + daytype) + factor(year) + (1 | site_code),
+              data = model_data)
+print(summary(model))
+capture.output(summary(model), file = "outputs/model_summary.txt")
+
+# Roadside minus urban background, estimated for each time band and each day type
+contrast_band <- pairs(emmeans(model, ~ site_type | band))
+contrast_day  <- pairs(emmeans(model, ~ site_type | daytype))
+print(contrast_band)
+print(contrast_day)
+capture.output(contrast_band, contrast_day, file = "outputs/emmeans_contrasts.txt")

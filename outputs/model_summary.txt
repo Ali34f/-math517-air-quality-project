@@ -1,5 +1,6 @@
 Linear mixed model fit by REML ['lmerMod']
-Formula: mean_no2 ~ site_type * (band + daytype) + factor(year) + (1 |      site_code)
+Formula: mean_no2 ~ site_type * (band + daytype) + factor(year) + (1 |  
+    site_code)
    Data: model_data
 
 REML criterion at convergence: 14282.3

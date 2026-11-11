@@ -20,3 +20,13 @@ band = Late evening (20-23):
 
 Results are averaged over the levels of: daytype, year 
 Degrees-of-freedom method: asymptotic 
+daytype = Weekday:
+ contrast                    estimate   SE  df z.ratio p.value
+ Roadside - Urban Background    10.60 1.82 Inf   5.817 <0.0001
+
+daytype = Weekend:
+ contrast                    estimate   SE  df z.ratio p.value
+ Roadside - Urban Background     9.32 1.82 Inf   5.117 <0.0001
+
+Results are averaged over the levels of: band, year 
+Degrees-of-freedom method: asymptotic 
