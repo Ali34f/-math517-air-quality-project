@@ -268,3 +268,18 @@ contrast_day  <- pairs(emmeans(model, ~ site_type | daytype))
 print(contrast_band)
 print(contrast_day)
 capture.output(contrast_band, contrast_day, file = "outputs/emmeans_contrasts.txt")
+
+# Model check: residuals vs fitted values, and normal Q-Q plot of residuals
+png("outputs/fig_model_check.png", width = 10, height = 4.5, units = "in", res = 300)
+par(mfrow = c(1, 2))   # two plots side by side
+
+plot(fitted(model), resid(model), pch = 16, col = rgb(0, 0, 0, 0.3),
+     xlab = expression(Fitted~NO[2]~(mu*g/m^3)), ylab = expression(Residual~(mu*g/m^3)),
+     main = "Residuals vs fitted")
+abline(h = 0, col = "red", lty = 2)
+
+qqnorm(resid(model), pch = 16, col = rgb(0, 0, 0, 0.3),
+       main = "Normal Q-Q plot of residuals")
+qqline(resid(model), col = "red", lty = 2)
+
+dev.off()
