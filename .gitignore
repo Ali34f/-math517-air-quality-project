@@ -1,5 +1,12 @@
-measurements.csv
+# Data: not stored on GitHub (copy from the DLE package, see README)
 measurements.csv
 sites.csv
-measurements.csv
-.Rproj.user
+*.zip
+
+# R / RStudio session files
+.RData
+.Rhistory
+.Rproj.user/
+
+# Operating-system files
+.DS_Store

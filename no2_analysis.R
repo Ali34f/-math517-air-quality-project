@@ -283,3 +283,9 @@ qqnorm(resid(model), pch = 16, col = rgb(0, 0, 0, 0.3),
 qqline(resid(model), col = "red", lty = 2)
 
 dev.off()
+
+# Record R and package versions used, for reproducibility
+pkgs <- c("readr", "dplyr", "tidyr", "lubridate", "ggplot2", "scales", "lme4", "emmeans")
+versions <- c(R = R.version.string,
+              sapply(pkgs, function(p) as.character(packageVersion(p))))
+writeLines(paste(names(versions), versions, sep = ": "), "outputs/session_info.txt")
