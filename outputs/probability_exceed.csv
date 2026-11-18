@@ -1,7 +1,7 @@
 site_type,daytype,band,p_exceed,n_sites
 Roadside,Weekday,Night (00-05),0.15358669918712542,35
 Roadside,Weekday,Morning peak (06-09),0.3922766207464974,35
-Roadside,Weekday,Daytime (10-15),0.28056477128629304,35
+Roadside,Weekday,Daytime (10-15),0.2805634767102747,35
 Roadside,Weekday,Evening peak (16-19),0.3792384064579,35
 Roadside,Weekday,Late evening (20-23),0.33708868346611054,35
 Roadside,Weekend,Night (00-05),0.15911434953588882,35

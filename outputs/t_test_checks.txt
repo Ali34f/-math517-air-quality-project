@@ -1,0 +1,12 @@
+# A tibble: 2 × 3
+  site_type            n variance
+  <chr>            <int>    <dbl>
+1 Roadside            35     82.0
+2 Urban Background    18     15.0
+
+	Wilcoxon rank sum exact test
+
+data:  mean_no2 by site_type
+W = 568, p-value = 2.147e-07
+alternative hypothesis: true location shift is not equal to 0
+

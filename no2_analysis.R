@@ -17,9 +17,12 @@ END_YEAR <- 2025
 CAPTURE_MIN <- 0.75 
 
 # Elevated benchmark (ug/m3) for probability analysis
-THRESHOLD <- 40              
+THRESHOLD <- 40
 
-# load data 
+# Readings above this are treated as instrument faults (only BT4, 13 Jun 2019, 964.4 ug/m3)
+OUTLIER_MAX <- 500
+
+# Load data 
 sites <- read_csv("sites.csv", show_col_types = FALSE)
 measurements <- read_csv("measurements.csv", show_col_types = FALSE)
 
@@ -38,7 +41,7 @@ no2_raw <- measurements %>%
     datetime_local = with_tz(datetime, tzone = "Europe/London"),
     year = year(datetime_local),
     hour = hour(datetime_local),
-    dow = wday(datetime_local, label = TRUE, abbr = TRUE, week_start = 1), # Monday first
+    dow = wday(datetime_local, label = TRUE, abbr = TRUE, week_start = 1),
     daytype = if_else(wday(datetime_local, week_start = 1) >= 6, "Weekend", "Weekday"),
     band = case_when(
       hour < 6  ~ "Night (00-05)",
@@ -97,12 +100,12 @@ p_cov <- ggplot(coverage, aes(factor(year), site_code, fill = capture)) +
   theme_minimal(base_size = 9)
 ggsave("outputs/fig_coverage.png", p_cov, width = 8, height = 9, dpi = 300)
 
-# Filter site-years based on 75% capture threshold and remove negative/missing values
+# Filter site-years based on 75% capture threshold and remove missing, negative and faulty (>500) values
 good_site_years <- coverage %>% filter(capture >= CAPTURE_MIN) %>% select(site_code, year)
 
 no2_clean <- no2 %>%
   semi_join(good_site_years, by = c("site_code", "year")) %>%
-  filter(!is.na(value), value >= 0)
+  filter(!is.na(value), value >= 0, value <= OUTLIER_MAX)
 
 cat("Valid cleaned rows kept:", nrow(no2_clean), "of", nrow(no2), "\n")
 cat("Site type breakdown of retained records:\n")
@@ -248,6 +251,22 @@ site_means <- no2_clean %>%
 t_res <- t.test(mean_no2 ~ site_type, data = site_means)
 print(t_res)
 capture.output(t_res, file = "outputs/t_test.txt")
+
+
+# Assumption checks for the t-test
+# Sample sizes and variances: a variance ratio above 2 means Welch's version is needed
+t_checks <- site_means %>% group_by(site_type) %>%
+  summarise(n = n(), variance = var(mean_no2), .groups = "drop")
+print(t_checks)
+
+# Normality of site means in each group (background has fewer than 30 sites)
+print(shapiro.test(site_means$mean_no2[site_means$site_type == "Roadside"]))
+print(shapiro.test(site_means$mean_no2[site_means$site_type == "Urban Background"]))
+
+# Non-parametric check, since normality is rejected
+w_res <- wilcox.test(mean_no2 ~ site_type, data = site_means)
+print(w_res)
+capture.output(t_checks, w_res, file = "outputs/t_test_checks.txt")
 
 # Model: linear mixed model of site-level means
 # One row per site x year x time band x day type, so hours are not treated as independent
